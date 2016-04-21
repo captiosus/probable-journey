@@ -78,17 +78,3 @@ var kathy = logo();
 
 bounceb.addEventListener( "click", kathy.createBall );
 stopb.addEventListener( "click", kathy.stop );
-
-// Thus, then, in few.
-// Your highness, lately sending into France,
-// Did claim some certain dukedoms, in the right
-// Of your great predecessor, King Edward the Third.
-// In answer of which claim, the prince our master
-// Says that you savour too much of your youth,
-// And bids you be advised there's nought in France
-// That can be with a nimble galliard won;
-// You cannot revel into dukedoms there.
-// He therefore sends you, meeter for your spirit,
-// This tun of treasure; and, in lieu of this,
-// Desires you let the dukedoms that you claim
-// Hear no more of you. This the Dauphin speaks.
