@@ -1,10 +1,20 @@
+/**
+ * @file    Bouncy Balls!
+ * @author  Kathy Wang (kwangaroo), Roy Xu(captiosus)
+ */
+
 var canvas = document.getElementById( "playground" );
 var bounceb = document.getElementById( "bouncestart" );
 var stopb = document.getElementById( "bouncestop" );
 
-
+/**
+ *	Wrapper function for BOUNCY BALLS!
+ */
 var logo = function() {
   var balls = [];
+  /**
+   * Creates a ball!!
+   */
   var createBall = function() {
     var c = document.createElementNS(
       "http://www.w3.org/2000/svg", "circle" );
@@ -23,15 +33,11 @@ var logo = function() {
     var dy = 2;
 
     var bounce = function() {
-      //	    console.log("bounce running");
 
       var x = parseInt( c.getAttribute( 'cx' ) );
       var y = parseInt( c.getAttribute( 'cy' ) );
       x += dx;
       y += dy;
-
-      //	    console.log(x);
-      //	    console.log(y);
 
       c.setAttribute( "cx", x.toString() );
       c.setAttribute( "cy", y.toString() );
@@ -42,10 +48,16 @@ var logo = function() {
     console.log( "bounce called" );
   };
 
+  /**
+   * Stops 1 ball!!! For now...
+   */
   var stop = function() {
     window.clearInterval( intervalID );
   };
 
+  /**
+   * The dictionary for accessing class elements
+   */
   return {
     attr: function( a, b ) {
       c.setAttribute( a, b );
@@ -66,3 +78,17 @@ var kathy = logo();
 
 bounceb.addEventListener( "click", kathy.createBall );
 stopb.addEventListener( "click", kathy.stop );
+
+// Thus, then, in few.
+// Your highness, lately sending into France,
+// Did claim some certain dukedoms, in the right
+// Of your great predecessor, King Edward the Third.
+// In answer of which claim, the prince our master
+// Says that you savour too much of your youth,
+// And bids you be advised there's nought in France
+// That can be with a nimble galliard won;
+// You cannot revel into dukedoms there.
+// He therefore sends you, meeter for your spirit,
+// This tun of treasure; and, in lieu of this,
+// Desires you let the dukedoms that you claim
+// Hear no more of you. This the Dauphin speaks.
