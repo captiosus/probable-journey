@@ -12,6 +12,7 @@ var stopb = document.getElementById( "bouncestop" );
  */
 var logo = function() {
   var balls = [];
+  var stops = [];
   /**
    * Creates a ball!!
    */
@@ -26,33 +27,52 @@ var logo = function() {
     c.setAttribute( "stroke", "black" );
 
     balls.push( c );
-    console.log( balls );
     canvas.appendChild( c );
 
     var dx = 3;
     var dy = 2;
 
-    var bounce = function() {
+    var hypotenuse = function( x, y ) {
+      return x * x + y * y;
+    };
 
+    var bounce = function() {
       var x = parseInt( c.getAttribute( 'cx' ) );
       var y = parseInt( c.getAttribute( 'cy' ) );
       x += dx;
       y += dy;
 
-      c.setAttribute( "cx", x.toString() );
-      c.setAttribute( "cy", y.toString() );
-      if ( x < 25 || x >= 475 ) dx = -dx;
-      if ( y < 25 || y >= 475 ) dy = -dy;
+      if ( x < 25 || x >= 475 ) {
+        dx = -dx;
+        x += dx;
+      }
+      if ( y < 25 || y >= 475 ) {
+        dy = -dy;
+        y += dy;
+      }
+      for ( var a = 0; a < balls.length; a++ ) {
+        hypot = hypotenuse( x - parseInt( balls[ a ].getAttribute( 'cx' ) ), y - parseInt( balls[ a ].getAttribute( 'cy' ) ) );
+        if ( hypot > hypotenuse( dx, dy ) && hypot <= 2500 ) {
+          dx = -dx;
+          dy = -dy;
+          x += dx;
+          y += dy;
+        }
+      }
+
+      c.setAttribute( "cx", x );
+      c.setAttribute( "cy", y );
     };
-    intervalID = window.setInterval( bounce, 16 );
-    console.log( "bounce called" );
+    stops.push( window.setInterval( bounce, 16 ) );
   };
 
   /**
    * Stops 1 ball!!! For now...
    */
   var stop = function() {
-    window.clearInterval( intervalID );
+    for ( var i = 0; i < stops.length; i++ ) {
+      clearInterval( stops[ i ] );
+    }
   };
 
   /**
