@@ -9,10 +9,8 @@
     <h1>closure bounces</h1>
     <button id="bouncestart">Bounce</button>
     <button id="bouncestop">Stop</button>
-    <button id="clearb">Clear</button>
     <br>
     <svg id="playground" height="500" width="500" style="border:1px solid;"></svg>
   </body>
-  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-  <script src="closuretest.js"></script>
+<script src="closuretest.js"></script>
 </html>

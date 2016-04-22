@@ -6,7 +6,6 @@
 var canvas = document.getElementById( "playground" );
 var bounceb = document.getElementById( "bouncestart" );
 var stopb = document.getElementById( "bouncestop" );
-var clear = document.getElementById( "clearb" );
 
 /**
  *	Wrapper function for BOUNCY BALLS!
@@ -40,6 +39,13 @@ var logo = function() {
       return x * x + y * y;
     };
 
+      var check = function(){ 
+	for ( var a = 0; a < balls.length; a++ ) {
+            hypot = hypotenuse( x - parseInt( balls[ a ].getAttribute( 'cx' ) ), y - parseInt( balls[ a ].getAttribute( 'cy' ) ) );
+            return ( hypot > hypotenuse( dx, dy ) && hypot <= 2500 ); 
+	}
+    };
+
     var bounce = function() {
       var x = parseInt( c.getAttribute( 'cx' ) );
       var y = parseInt( c.getAttribute( 'cy' ) );
@@ -54,16 +60,14 @@ var logo = function() {
         dy = -dy;
         y += dy;
       }
-	for ( var a = 0; a < balls.length; a++ ) {
-            hypot = hypotenuse( x - parseInt( balls[ a ].getAttribute( 'cx' ) ), y - parseInt( balls[ a ].getAttribute( 'cy' ) ) );
-            if ( hypot > hypotenuse( dx, dy ) && hypot <= 2500 ){
-		dx = -dx;
-		dy = -dy;
-		x += dx;
-		y += dy;
-            }
-	};
-	    
+	if( check ) { 
+	  console.log(check());
+          dx = -dx;
+          dy = -dy;
+          x += dx;
+          y += dy;
+        }
+
       c.setAttribute( "cx", x );
       c.setAttribute( "cy", y );
     };
@@ -81,13 +85,6 @@ var logo = function() {
     }
   };
 
-    //clears canvas!! 
-    var clearBalls = function(){ 
-	for(var a = 0; a < balls.length; a++){
-	    canvas.removeChild(balls[a]);
-	}
-    };
-
   /**
    * The dictionary for accessing class elements
    */
@@ -103,8 +100,7 @@ var logo = function() {
     },
     balls: balls,
     createBall: createBall,
-    stop: stop,
-    clear: clearBalls
+    stop: stop
   };
 };
 
@@ -112,4 +108,3 @@ var kathy = logo();
 
 bounceb.addEventListener( "click", kathy.createBall );
 stopb.addEventListener( "click", kathy.stop );
-clear.addEventListener( "click", kathy.clear );
