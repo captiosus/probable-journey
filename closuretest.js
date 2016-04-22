@@ -3,6 +3,10 @@
  * @author  Kathy Wang (kwangaroo), Roy Xu(captiosus)
  */
 
+/* 
+   problems rn: buttonspam makes the balls freak out, also makes clear not work
+ */
+
 var canvas = document.getElementById( "playground" );
 var bounceb = document.getElementById( "bouncestart" );
 var stopb = document.getElementById( "bouncestop" );
@@ -28,10 +32,7 @@ var logo = function() {
     c.setAttribute( "stroke", "black" );
 
     balls.push( c );
-    
-    //setTimeout(function(){
-	canvas.appendChild( c );
-   // }, 1500);
+    canvas.appendChild( c );
 
     var dx = 3;
     var dy = 2;
@@ -67,7 +68,7 @@ var logo = function() {
       c.setAttribute( "cx", x );
       c.setAttribute( "cy", y );
     };
-      stops.push( window.setInterval( bounce, 16 ) );
+      stops.push( window.setInterval(bounce, 16 ) );
   };
 
   
@@ -84,8 +85,13 @@ var logo = function() {
     //clears canvas!! 
     var clearBalls = function(){ 
 	for(var a = 0; a < balls.length; a++){
+	    console.log(a);
+	    console.log(balls[a]);
 	    canvas.removeChild(balls[a]);
 	}
+	balls = [];
+	console.log("clear ran");
+	console.log(balls);
     };
 
   /**
